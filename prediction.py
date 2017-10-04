@@ -1,6 +1,7 @@
 
 import pandas as pd
 import numpy as np
+import butterworth
 from collections import deque
 from io import StringIO
 from time import sleep
@@ -12,12 +13,15 @@ from keras.models import Sequential
 
 
 
-data_filepath = 'data/sample_data_format.csv'
+data_filepath = 'data/sample_data_format.csv' #mega_data.csv
 model_filepath = 'data/har_rnn_lstm.h5'
 readings = 128 #change to 40
 waiting_time = 0.4 #0.4 seconds
 prediction_threshold = 0.7
 neutral_position = 0 
+order = 6       # Order 6
+fs = 40       # sample rate, Hz
+cutoff = 5    # desired cutoff frequency of the filter in Hz (take max/60)
 
 
 def get_data(filename, numlines):
@@ -30,8 +34,9 @@ def get_model(modelname):
 
 
 def apply_filter(data):
-	#Placeholder for filter algorithm
-	return data
+	# Function to be called if you wanna use this Shit Hot Filter. Can u handle it?
+	filteredResult = butterworth.shitHotLP(data, cutoff, fs, order)
+	return filteredResult
 
 
 def feature_extraction(x, y, z):
