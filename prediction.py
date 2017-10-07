@@ -79,7 +79,22 @@ def check_results(y):
 
 
 def send_server(results):
-	#format the string and send to server.
+	# Results should contain action, current and voltage data
+	# Save results in .csv file for client.py to read
+	#
+	# List of actions available in client.py
+	# Send an integer to invoke the following actions:
+	# 0 - logout
+	# 1 - wavehands
+	# 2 - busdriver
+	# 3 - frontback
+	# 4 - sidestep
+	# 5 - jumping
+	# 6 - jumpingjack
+	# 7 - turnclap
+	# 8 - squatturnclap
+	# 9 - windowcleaning
+	# 10 - windowcleaner360
 	pass
 
 def init(modelname):
